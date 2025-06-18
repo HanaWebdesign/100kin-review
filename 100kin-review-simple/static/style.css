@@ -1,0 +1,163 @@
+
+.stars {
+  color: gold;
+  font-size: 1.2em;
+}
+
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+}
+.star-rating input[type="radio"] {
+  display: none;
+}
+.star-rating label {
+  font-size: 1.5em;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.star-rating input[type="radio"]:checked ~ label {
+  color: gold;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+}
+
+:root {
+  --bg-main: #fdfaf6;
+  --bg-card: #fffdf9;
+  --text-main: #3b3b3b;
+  --accent: #e78b3a;
+  --button-bg: #f2cba4;
+  --border-soft: #e0dcd3;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: var(--accent);
+  color: white;
+  padding: 1em;
+  font-size: 1.5em;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  padding: 2em;
+  max-width: 800px;
+  margin: auto;
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(200, 180, 150, 0.2);
+}
+
+input, textarea, select {
+  font-family: inherit;
+  padding: 0.6em;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  background-color: #fffaf2;
+  color: var(--text-main);
+  margin-bottom: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+  padding: 0.6em 1.2em;
+  border-radius: 6px;
+  background-color: var(--button-bg);
+  color: #3b3b3b;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: none;
+  box-shadow: 0 2px 4px rgba(200, 180, 150, 0.3);
+  width: auto;
+  display: inline-block;
+  margin-bottom: 1em;
+}
+
+button:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.review-item {
+  border-bottom: 1px dashed var(--border-soft);
+  padding: 1.5em 0;
+}
+
+.review-meta {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 0.3em;
+}
+
+.review-main {
+  font-size: 1em;
+  color: var(--text-main);
+}
+
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.login-info a button {
+  width: auto;
+  display: inline-block;
+  padding: 0.4em 1em;
+  margin-right: 0.5em;
+  border-radius: 8px;
+  background-color: #f5d3a5;
+  color: #3b3b3b;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 2px 3px rgba(150, 120, 100, 0.2);
+  transition: 0.2s;
+}
+
+.login-info a button:hover {
+  background-color: #e78b3a;
+  color: white;
+}
+
+.auth-form {
+  background-color: #fffdf9;
+  padding: 2em;
+  margin: 2em auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(200, 180, 150, 0.2);
+  max-width: 500px;
+  text-align: center;
+}
+
+.auth-form label {
+  display: block;
+  margin-top: 1em;
+  font-weight: bold;
+  text-align: left;
+  color: #3b3b3b;
+}
+
+.auth-form input {
+  width: 100%;
+  max-width: 400px;
+}
+
