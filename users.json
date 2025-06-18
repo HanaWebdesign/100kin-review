@@ -1,0 +1,10 @@
+{
+  "Hana0326": {
+    "email": "pairasger@gmail.com",
+    "password": "scrypt:32768:8:1$DFCD6JbEjKBXEh71$169666d1a5a6a15ec8612985cd95bbcd7af257f4065abbd20e425eabef01492f9bafd3dd7d4e703aa7443b7806225d0ca1099ccea63a9b6363204cb454774484"
+  },
+  "hanahana": {
+    "email": "pairasger@gmail.com",
+    "password": "scrypt:32768:8:1$or3CH7AA7i8uzwrX$467ae0ecd829ba53aaf149efe07a2b74f9e4f45a414ee8b78d9bc7461307f5db2971ff943b67a04b883e328ca0c17c3febab30bc4b0c4ca09f91c76cf081183b"
+  }
+}

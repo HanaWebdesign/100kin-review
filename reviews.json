@@ -1,0 +1,24 @@
+[
+  {
+    "item": "タオル",
+    "maker": "セリア",
+    "rating": "4",
+    "comment": "デザインはいいけど吸水しない",
+    "user": "はな",
+    "user_id": "hanahanah",
+    "date": "2025-06-14 02:09",
+    "likes": 1
+  },
+  {
+    "user": "名無し",
+    "user_id": "hanahana",
+    "item": "ラーメン作る器",
+    "maker": "ダイソー",
+    "rating": "5",
+    "comment": "スープ、うどんも作れる",
+    "date": "2025-06-18",
+    "image_path": null,
+    "likes": 0,
+    "reported": false
+  }
+]

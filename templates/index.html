@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>百均レビュー投稿</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>百均レビュー投稿広場</header>
+
+  <div class="container">
+    <div class="login-info">
+      {% if user %}
+        ログイン中：{{ user }}
+        <a href="/logout"><button>ログアウト</button></a>
+      {% else %}
+        ※ログインしていません
+        <a href="/login"><button>ログイン</button></a>
+        <a href="/register"><button>新規登録</button></a>
+      {% endif %}
+    </div>
+
+{% if user %}
+  <form class="review-form" method="POST" enctype="multipart/form-data" action="/">
+    <input type="hidden" name="user" value="{{ user }}">
+    <input type="hidden" name="user_id" value="{{ user }}">
+
+    <div class="form-group">
+      <label for="item">商品名：</label>
+      <input type="text" id="item" name="item" required>
+    </div>
+
+    <div class="form-group">
+      <label for="maker">メーカー名（任意）：</label>
+      <input type="text" id="maker" name="maker">
+    </div>
+
+    <div class="form-group">
+      <label>評価（1〜5）：</label>
+      <div class="star-rating">
+        {% for i in range(5, 0, -1) %}
+          <input type="radio" name="rating" id="star{{ i }}" value="{{ i }}" required>
+          <label for="star{{ i }}">★</label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">レビュー内容：</label>
+      <textarea id="comment" name="comment" required></textarea>
+    </div>
+
+    <input type="file" name="image">
+    <button type="submit">レビューを投稿</button>
+  </form>
+{% else %}
+  <p style="color: gray;">※投稿・編集・通報・いいねはログイン後に可能です</p>
+{% endif %}
+
+    <hr>
+
+    <h2>投稿されたレビュー</h2>
+    <ul class="review-list">
+      {% for review in reviews %}
+        <li class="review-item">
+          <div class="review-meta">
+            {% if review.maker %}（{{ review.maker }}）{% endif %}
+            投稿者：{{ review.user or "名無し" }}@{{ review.user_id or "unknown" }}
+          </div>
+          <div class="review-main">
+            <strong>{{ review.item }}</strong> - 評価：
+            <span class="stars">
+              {% for i in range(1, 6) %}
+                {% if i <= review.rating|int %}★{% else %}☆{% endif %}
+              {% endfor %}
+            </span><br>
+            投稿日：{{ review.date }}<br>
+            {% if review.image_path %}
+              <img src="{{ url_for('static', filename=review.image_path) }}" alt="レビュー画像" width="200">
+            {% endif %}
+            <p>{{ review.comment }}</p>
+
+            {% if review.reported %}
+              <p style="color: red; font-weight: bold;">⚠ 通報された投稿</p>
+            {% endif %}
+          </div>
+
+          {% if user and review.user_id == user %}
+            <form action="/edit" method="post" style="display:inline;">
+              <input type="hidden" name="index" value="{{ loop.index0 }}">
+              <button type="submit">編集</button>
+            </form>
+            <form action="/delete" method="post" style="display:inline;">
+              <input type="hidden" name="index" value="{{ loop.index0 }}">
+              <button type="submit">削除</button>
+            </form>
+          {% endif %}
+
+          {% if user %}
+            {% if session.get('liked_reviews') and loop.index0 in session.liked_reviews %}
+              <span>👍 いいね済（{{ review.likes or 0 }}）</span>
+            {% else %}
+              <form action="/like" method="post" style="display:inline;">
+                <input type="hidden" name="index" value="{{ loop.index0 }}">
+                <button type="submit">👍 いいね（{{ review.likes or 0 }}）</button>
+              </form>
+            {% endif %}
+            <form action="/report" method="post" style="display:inline;">
+              <input type="hidden" name="index" value="{{ loop.index0 }}">
+              <button type="submit" onclick="return confirm('この投稿を通報しますか？');">🚨 通報</button>
+            </form>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
